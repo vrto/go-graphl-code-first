@@ -14,7 +14,7 @@ const (
 	dbname   = "pubdb"
 )
 
-func OpenConnection() *sql.DB {
+func openConnection() *sql.DB {
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 		"password=%s dbname=%s sslmode=disable",
 		host, port, user, password, dbname)
@@ -32,4 +32,17 @@ func OpenConnection() *sql.DB {
 	}
 
 	return db
+}
+
+func RunQuery(query string, args ...interface{}) *sql.Rows {
+	conn := openConnection()
+	defer conn.Close()
+
+	rows, err := conn.Query(query, args...)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return rows
 }

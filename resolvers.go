@@ -13,13 +13,7 @@ func PubResolver(params graphql.ResolveParams) (interface{}, error) {
 		return nil, nil
 	}
 
-	db := OpenConnection()
-	defer db.Close()
-
-	rows, err := db.Query("SELECT * FROM pub WHERE id = $1", id)
-	if err != nil {
-		log.Fatal(err)
-	}
+	rows := RunQuery("SELECT * FROM pub WHERE id = $1", id)
 	defer rows.Close()
 
 	if !rows.Next() {
@@ -27,8 +21,7 @@ func PubResolver(params graphql.ResolveParams) (interface{}, error) {
 	}
 
 	var pub Pub
-	err = rows.Scan(&pub.Id, &pub.Name)
-	if err != nil {
+	if err := rows.Scan(&pub.Id, &pub.Name); err != nil {
 		log.Fatal(err)
 	}
 	return pub, nil
@@ -37,20 +30,14 @@ func PubResolver(params graphql.ResolveParams) (interface{}, error) {
 //TODO return err instead of logging?
 func BeersForPubResolver(params graphql.ResolveParams) (interface{}, error) {
 	pubId := params.Source.(Pub).Id
-	db := OpenConnection()
-	defer db.Close()
 
-	rows, err := db.Query("SELECT id, name, maker, type FROM beer JOIN pubs_beers ON id = beer_id WHERE pub_id = $1", pubId)
-	if err != nil {
-		log.Fatal(err)
-	}
+	rows := RunQuery("SELECT id, name, maker, type FROM beer JOIN pubs_beers ON id = beer_id WHERE pub_id = $1", pubId)
 	defer rows.Close()
 
 	var beers []Beer
 	for rows.Next() {
 		var beer Beer
-		err = rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type)
-		if err != nil {
+		if err := rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type); err != nil {
 			log.Fatal(err)
 		}
 		beers = append(beers, beer)
@@ -64,13 +51,7 @@ func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 		return nil, nil
 	}
 
-	db := OpenConnection()
-	defer db.Close()
-
-	rows, err := db.Query("SELECT * FROM beer WHERE id = $1", id)
-	if err != nil {
-		log.Fatal(err)
-	}
+	rows := RunQuery("SELECT * FROM beer WHERE id = $1", id)
 	defer rows.Close()
 
 	if !rows.Next() {
@@ -78,8 +59,7 @@ func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 	}
 
 	var beer Beer
-	err = rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type)
-	if err != nil {
+	if err := rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type); err != nil {
 		log.Fatal(err)
 	}
 	return beer, nil
