@@ -1,0 +1,11 @@
+{
+    pub(id:2) {
+        id
+        name
+        beers {
+            maker
+            name
+            type
+        }
+    }
+}

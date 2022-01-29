@@ -11,7 +11,9 @@ import (
 
 func main() {
 	schema := CreateGraphQlSchema()
-	runQuery(schema, "Get Pub by ID", "queries/get-pub.graphql")
+	runQuery(schema, "Get Pub 1 (Full)", "queries/get-pub-full-1.graphql")
+	runQuery(schema, "Get Pub 1 (Simple)", "queries/get-pub-simple-1.graphql")
+	runQuery(schema, "Get Pub 2 (Full)", "queries/get-pub-full-2.graphql")
 }
 
 func runQuery(schema graphql.Schema, header, fileName string) {
@@ -25,5 +27,5 @@ func runQuery(schema graphql.Schema, header, fileName string) {
 	}
 
 	respJson, _ := json.MarshalIndent(response, "", "  ")
-	fmt.Printf("===> %s\n%s \n", header, respJson)
+	fmt.Printf("\n===> %s\n%s \n", header, respJson)
 }
