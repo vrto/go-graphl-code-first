@@ -1,0 +1,8 @@
+{
+    beer(id: 1) {
+        id
+        maker
+        name
+        type
+    }
+}

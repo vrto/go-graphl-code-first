@@ -58,7 +58,6 @@ func BeersForPubResolver(params graphql.ResolveParams) (interface{}, error) {
 	return beers, nil
 }
 
-//TODO unused so far
 func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 	id, ok := params.Args["id"].(int)
 	if !ok {

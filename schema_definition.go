@@ -29,9 +29,8 @@ func createFields() graphql.Fields {
 			},
 			Resolve: PubResolver,
 		},
-		//TODO unused so far
 		"beer": &graphql.Field{
-			Type:        pubType,
+			Type:        beerType,
 			Description: "Get Beer by ID",
 			Args: graphql.FieldConfigArgument{
 				"id": &graphql.ArgumentConfig{
@@ -66,9 +65,6 @@ var beerType = graphql.NewObject(
 		Fields: graphql.Fields{
 			"id": &graphql.Field{
 				Type: graphql.Int,
-			},
-			"pubIds": &graphql.Field{
-				Type: graphql.NewList(graphql.Int),
 			},
 			"maker": &graphql.Field{
 				Type: graphql.String,
