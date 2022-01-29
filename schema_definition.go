@@ -8,9 +8,7 @@ import (
 )
 
 func CreateGraphQlSchema() graphql.Schema {
-	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: createFields()}
-	schemaConfig := graphql.SchemaConfig{
-		Query: graphql.NewObject(rootQuery)}
+	schemaConfig := graphql.SchemaConfig{Query: queryType}
 
 	schema, err := graphql.NewSchema(schemaConfig)
 	if err != nil {
@@ -19,7 +17,13 @@ func CreateGraphQlSchema() graphql.Schema {
 	return schema
 }
 
-func createFields() graphql.Fields {
+var queryType = graphql.NewObject(
+	graphql.ObjectConfig{
+		Name:   "RootQuery",
+		Fields: createQueryFields(),
+	})
+
+func createQueryFields() graphql.Fields {
 	return graphql.Fields{
 		"pub": &graphql.Field{
 			Type:        pubType,
