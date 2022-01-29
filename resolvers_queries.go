@@ -73,7 +73,7 @@ func BeersResolver(_ graphql.ResolveParams) (interface{}, error) {
 }
 
 func PubsForBeerResolver(params graphql.ResolveParams) (interface{}, error) {
-	beerId := params.Source.(Beer).Id
+	beerId := params.Source.(*Beer).Id
 
 	rows := RunQuery("SELECT name FROM pub JOIN pubs_beers ON id = pub_id WHERE beer_id = $1", beerId)
 	defer rows.Close()
