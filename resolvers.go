@@ -17,7 +17,7 @@ func PubResolver(params graphql.ResolveParams) (interface{}, error) {
 	defer rows.Close()
 
 	if !rows.Next() {
-		return nil, nil
+		return nil, NewNotFoundError("pub")
 	}
 
 	var pub Pub
@@ -27,7 +27,6 @@ func PubResolver(params graphql.ResolveParams) (interface{}, error) {
 	return pub, nil
 }
 
-//TODO return err instead of logging?
 func BeersForPubResolver(params graphql.ResolveParams) (interface{}, error) {
 	pubId := params.Source.(Pub).Id
 
@@ -55,7 +54,7 @@ func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 	defer rows.Close()
 
 	if !rows.Next() {
-		return nil, nil
+		return nil, NewNotFoundError("beer")
 	}
 
 	var beer Beer

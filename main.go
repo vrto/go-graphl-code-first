@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 
 	"github.com/graphql-go/graphql"
 )
@@ -23,9 +22,6 @@ func runQuery(schema graphql.Schema, header, fileName string) {
 
 	params := graphql.Params{Schema: schema, RequestString: query}
 	response := graphql.Do(params)
-	if len(response.Errors) > 0 {
-		log.Fatalf("failed to execute graphql op, errors: %+v", response.Errors)
-	}
 
 	respJson, _ := json.MarshalIndent(response, "", "  ")
 	fmt.Printf("\n===> %s\n%s \n", header, respJson)

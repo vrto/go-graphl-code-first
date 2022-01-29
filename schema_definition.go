@@ -1,8 +1,10 @@
 package main
 
 import (
-	"github.com/graphql-go/graphql"
+	"fmt"
 	"log"
+
+	"github.com/graphql-go/graphql"
 )
 
 func CreateGraphQlSchema() graphql.Schema {
@@ -77,3 +79,15 @@ var beerType = graphql.NewObject(
 			},
 		},
 	})
+
+type NotFoundError struct {
+	Entity string
+}
+
+func NewNotFoundError(entity string) *NotFoundError {
+	return &NotFoundError{Entity: entity}
+}
+
+func (e NotFoundError) Error() string {
+	return fmt.Sprintf("%s not found!", e.Entity)
+}
