@@ -1,0 +1,7 @@
+CREATE TABLE pub(
+    id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO pub(name) VALUES('Lokal');
+INSERT INTO pub(name) VALUES('Poupe');
