@@ -1,0 +1,3 @@
+mutation {
+    createBeer(name: "Torpedo Extra IPA", maker: "Sierra Nevada", type: "Double IPA")
+}

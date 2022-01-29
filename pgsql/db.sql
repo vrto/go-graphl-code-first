@@ -18,12 +18,14 @@ CREATE TABLE pubs_beers(
     CONSTRAINT fk_beer FOREIGN KEY(beer_id) REFERENCES beer(id)
 );
 
-INSERT INTO pub VALUES(1, 'Lokal');
-INSERT INTO pub VALUES(2, 'Poupe');
+INSERT INTO pub(name) VALUES('Lokal');
+INSERT INTO pub(name) VALUES('Poupe');
 
-INSERT INTO beer VALUES (1, 'Pilsner Urquell', 'Plzensky prazdroj', 'Lager');
-INSERT INTO beer VALUES (2, 'Raptor', 'Matuska', 'IPA');
-INSERT INTO beer VALUES (3, 'Budvar 33', 'Budvar', 'Lager');
+INSERT INTO beer(name, maker, type) VALUES ('Pilsner Urquell', 'Plzensky prazdroj', 'Lager');
+INSERT INTO beer(name, maker, type) VALUES ('Raptor', 'Matuska', 'IPA');
+INSERT INTO beer(name, maker, type) VALUES ('Budvar 33', 'Budvar', 'Lager');
+
+-- serial starts with 1, safe to hardcode keys
 
 INSERT INTO pubs_beers VALUES (1, 1);
 INSERT INTO pubs_beers VALUES (1, 3);

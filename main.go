@@ -15,6 +15,10 @@ func main() {
 	runQuery(schema, "Get Pub 2 (Full)", "queries/get-pub-full-2.graphql")
 	runQuery(schema, "Get Beer", "queries/get-beer.graphql")
 	runQuery(schema, "Get Beer and its Pubs", "queries/get-beer-with-pubs.graphql")
+	runQuery(schema, "Create Torpedo Extra IPA beer", "mutations/create-beer.graphql")
+	runQuery(schema, "List All Beers", "queries/get-beers.graphql")
+	runQuery(schema, "Create Guinness beer", "mutations/create-beer-unknown-type.graphql")
+	runQuery(schema, "List All Beers", "queries/get-beers.graphql")
 }
 
 func runQuery(schema graphql.Schema, header, fileName string) {

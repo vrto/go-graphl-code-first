@@ -64,6 +64,21 @@ func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 	return beer, nil
 }
 
+func BeersResolver(_ graphql.ResolveParams) (interface{}, error) {
+	rows := RunQuery("SELECT * FROM beer")
+	defer rows.Close()
+
+	var beers []Beer
+	for rows.Next() {
+		var beer Beer
+		if err := rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type); err != nil {
+			log.Fatal(err)
+		}
+		beers = append(beers, beer)
+	}
+	return beers, nil
+}
+
 func PubsForBeerResolver(params graphql.ResolveParams) (interface{}, error) {
 	beerId := params.Source.(Beer).Id
 

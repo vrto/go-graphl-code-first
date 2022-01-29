@@ -1,0 +1,3 @@
+mutation {
+    createBeer(name: "Guinness", maker: "Diageo")
+}

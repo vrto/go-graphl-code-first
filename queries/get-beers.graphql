@@ -1,0 +1,8 @@
+{
+    beers {
+        id
+        maker
+        name
+        type
+    }
+}

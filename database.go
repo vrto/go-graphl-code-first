@@ -46,3 +46,15 @@ func RunQuery(query string, args ...interface{}) *sql.Rows {
 
 	return rows
 }
+
+func Insert(insert string, args ...interface{}) bool {
+	conn := openConnection()
+	defer conn.Close()
+
+	_, err := conn.Exec(insert, args...)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return err == nil
+}
