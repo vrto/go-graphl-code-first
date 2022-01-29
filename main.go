@@ -14,6 +14,7 @@ func main() {
 	runQuery(schema, "Get Pub 1 (Simple)", "queries/get-pub-simple-1.graphql")
 	runQuery(schema, "Get Pub 2 (Full)", "queries/get-pub-full-2.graphql")
 	runQuery(schema, "Get Beer", "queries/get-beer.graphql")
+	runQuery(schema, "Get Beer and its Pubs", "queries/get-beer-with-pubs.graphql")
 }
 
 func runQuery(schema graphql.Schema, header, fileName string) {

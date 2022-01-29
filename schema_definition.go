@@ -77,6 +77,10 @@ var beerType = graphql.NewObject(
 			"type": &graphql.Field{
 				Type: graphql.String,
 			},
+			"pubs": &graphql.Field{
+				Type:    graphql.NewList(graphql.String),
+				Resolve: PubsForBeerResolver,
+			},
 		},
 	})
 
