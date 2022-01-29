@@ -22,5 +22,18 @@ var mutationType = graphql.NewObject(
 				},
 				Resolve: CreateBeerResolver,
 			},
+			"updateBeer": &graphql.Field{
+				Type:        beerType,
+				Description: "update an existing beer",
+				Args: graphql.FieldConfigArgument{
+					"id": &graphql.ArgumentConfig{
+						Type: graphql.Int,
+					},
+					"type": &graphql.ArgumentConfig{
+						Type: graphql.String,
+					},
+				},
+				Resolve: UpdateBeerTypeResolver,
+			},
 		},
 	})

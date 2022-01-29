@@ -50,18 +50,11 @@ func BeerResolver(params graphql.ResolveParams) (interface{}, error) {
 		return nil, nil
 	}
 
-	rows := RunQuery("SELECT * FROM beer WHERE id = $1", id)
-	defer rows.Close()
-
-	if !rows.Next() {
+	if beer := GetOneBeer(id); beer == nil {
 		return nil, NewNotFoundError("beer")
+	} else {
+		return beer, nil
 	}
-
-	var beer Beer
-	if err := rows.Scan(&beer.Id, &beer.Name, &beer.Maker, &beer.Type); err != nil {
-		log.Fatal(err)
-	}
-	return beer, nil
 }
 
 func BeersResolver(_ graphql.ResolveParams) (interface{}, error) {

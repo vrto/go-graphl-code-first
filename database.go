@@ -47,11 +47,11 @@ func RunQuery(query string, args ...interface{}) *sql.Rows {
 	return rows
 }
 
-func Insert(insert string, args ...interface{}) bool {
+func Exec(query string, args ...interface{}) bool {
 	conn := openConnection()
 	defer conn.Close()
 
-	_, err := conn.Exec(insert, args...)
+	_, err := conn.Exec(query, args...)
 	if err != nil {
 		log.Fatal(err)
 	}

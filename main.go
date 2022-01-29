@@ -19,6 +19,8 @@ func main() {
 	runQuery(schema, "List All Beers", "queries/get-beers.graphql")
 	runQuery(schema, "Create Guinness beer", "mutations/create-beer-unknown-type.graphql")
 	runQuery(schema, "List All Beers", "queries/get-beers.graphql")
+	runQuery(schema, "Update Beer Name", "mutations/update-beer.graphql")
+	runQuery(schema, "List All Beers", "queries/get-beers.graphql")
 }
 
 func runQuery(schema graphql.Schema, header, fileName string) {

@@ -7,9 +7,8 @@ type Pub struct {
 }
 
 type Beer struct {
-	Id     int
-	PubIds []int
-	Maker  string
-	Name   string
-	Type   string
+	Id    int
+	Maker string
+	Name  string
+	Type  string
 }

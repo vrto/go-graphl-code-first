@@ -1,0 +1,7 @@
+mutation {
+    updateBeer(id: 2, type: "DIPA") {
+        maker
+        name
+        type
+    }
+}
